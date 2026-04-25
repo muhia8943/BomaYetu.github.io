@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kirkland — Interior Design</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --crimson: #9b1c3a;
+    --crimson-light: #c0294f;
+    --dark: #1a1a1a;
+    --mid: #555;
+    --light: #f7f5f2;
+    --white: #ffffff;
+    --border: #e0dbd4;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); color: var(--dark); background: var(--white); font-size: 15px; line-height: 1.65; }
+
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; object-fit: cover; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 64px;
+  }
+  .logo {
+    font-family: var(--font-display); font-size: 1.5rem; font-weight: 600;
+    letter-spacing: .12em; text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 36px; font-size: 14px; font-weight: 400; }
+  .nav-links a { color: var(--mid); transition: color .2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--dark); }
+  .btn-cta {
+    background: var(--crimson); color: var(--white);
+    padding: 10px 22px; font-size: 13px; font-weight: 500;
+    letter-spacing: .04em; border: none; cursor: pointer; transition: background .2s;
+  }
+  .btn-cta:hover { background: var(--crimson-light); }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 520px;
+  }
+  .hero-img { overflow: hidden; }
+  .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-content {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 64px 56px;
+    background: var(--white);
+  }
+  .hero-content h1 {
+    font-family: var(--font-display); font-size: 3rem; font-weight: 300;
+    line-height: 1.15; margin-bottom: 20px;
+  }
+  .hero-content p { color: var(--mid); font-size: 14.5px; margin-bottom: 32px; max-width: 380px; }
+  .btn-group { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-outline {
+    border: 1.5px solid var(--dark); color: var(--dark);
+    padding: 10px 22px; font-size: 13px; font-weight: 500;
+    background: transparent; cursor: pointer; transition: all .2s;
+  }
+  .btn-outline:hover { background: var(--dark); color: var(--white); }
+
+  /* ── SECTION TITLES ── */
+  .section-tag {
+    font-family: var(--font-display); font-size: 2.1rem; font-weight: 300;
+    line-height: 1.2; margin-bottom: 12px;
+  }
+  .section-tag em { color: var(--crimson); font-style: normal; font-weight: 400; }
+  .section-sub { color: var(--mid); font-size: 14px; max-width: 480px; }
+
+  /* ── SERVICES ── */
+  .services {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; background: var(--light);
+  }
+  .services-left { padding: 80px 56px; }
+  .services-right { overflow: hidden; }
+  .services-right img { width: 100%; height: 100%; object-fit: cover; }
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-top: 44px; }
+  .service-item .icon {
+    width: 40px; height: 40px; margin-bottom: 12px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--border); color: var(--crimson);
+    font-size: 18px;
+  }
+  .service-item h4 { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .service-item p { font-size: 13px; color: var(--mid); }
+
+  /* ── PORTFOLIO LIST ── */
+  .portfolio-section {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; padding: 80px 0;
+    border-top: 1px solid var(--border);
+  }
+  .portfolio-list { padding: 0 56px; }
+  .portfolio-item {
+    display: grid; grid-template-columns: 120px 1fr;
+    gap: 20px; align-items: start;
+    padding: 28px 0; border-bottom: 1px solid var(--border);
+  }
+  .portfolio-item img { height: 88px; width: 120px; object-fit: cover; }
+  .portfolio-item-body h4 { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+  .portfolio-item-body p { font-size: 13px; color: var(--mid); margin-bottom: 10px; }
+  .read-more { font-size: 12px; font-weight: 500; color: var(--dark); letter-spacing: .06em; display: flex; align-items: center; gap: 6px; }
+  .read-more::after { content: '→'; }
+
+  .portfolio-featured { padding: 0 56px; }
+  .portfolio-featured .section-tag { margin-bottom: 20px; }
+  .portfolio-featured .section-sub { margin-bottom: 28px; }
+  .portfolio-featured img { width: 100%; height: 240px; object-fit: cover; margin-bottom: 16px; }
+  .portfolio-featured h4 { font-size: 16px; font-weight: 500; margin-bottom: 8px; }
+  .portfolio-featured p { font-size: 13px; color: var(--mid); margin-bottom: 12px; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { padding: 80px 56px; text-align: center; background: var(--white); }
+  .testimonials h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 300; margin-bottom: 12px; }
+  .testimonials > p { color: var(--mid); font-size: 14px; max-width: 620px; margin: 0 auto 48px; }
+  .testimonial-card {
+    display: grid; grid-template-columns: 220px 1fr;
+    gap: 48px; align-items: center;
+    max-width: 860px; margin: 0 auto;
+    text-align: left;
+  }
+  .testimonial-card img { width: 220px; height: 280px; object-fit: cover; }
+  .quote-body { padding: 20px 0; }
+  .quote-icon { color: var(--crimson); font-size: 2.4rem; font-family: var(--font-display); line-height: 1; margin-bottom: 20px; }
+  .quote-text { font-size: 14.5px; color: var(--mid); line-height: 1.8; margin-bottom: 24px; }
+  .quote-name { font-size: 15px; font-weight: 500; }
+  .quote-role { font-size: 13px; color: var(--mid); }
+  .testimonial-nav { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
+  .testimonial-nav button {
+    width: 36px; height: 36px; border: 1.5px solid var(--border);
+    background: none; cursor: pointer; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .2s;
+  }
+  .testimonial-nav button:hover { background: var(--dark); color: var(--white); border-color: var(--dark); }
+
+  /* ── CTA BAND ── */
+  .cta-band {
+    display: grid; grid-template-columns: 1fr 1fr;
+    background: var(--crimson);
+    min-height: 280px;
+  }
+  .cta-content { padding: 64px 56px; color: var(--white); display: flex; flex-direction: column; justify-content: center; }
+  .cta-content h2 { font-family: var(--font-display); font-size: 2.4rem; font-weight: 300; margin-bottom: 16px; }
+  .cta-content p { font-size: 14px; opacity: .85; margin-bottom: 32px; max-width: 380px; }
+  .btn-white {
+    display: inline-block; background: var(--white); color: var(--crimson);
+    padding: 12px 26px; font-size: 13px; font-weight: 500;
+    letter-spacing: .04em; cursor: pointer; border: none;
+    transition: opacity .2s; width: fit-content;
+  }
+  .btn-white:hover { opacity: .88; }
+  .cta-img { overflow: hidden; }
+  .cta-img img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--white); border-top: 1px solid var(--border);
+    padding: 56px 56px 32px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+  .footer-brand .logo { font-size: 1.2rem; margin-bottom: 14px; display: block; }
+  .footer-brand p { font-size: 13px; color: var(--mid); margin-bottom: 20px; }
+  .social-links { display: flex; gap: 12px; }
+  .social-links a {
+    width: 30px; height: 30px; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: var(--mid); transition: all .2s;
+  }
+  .social-links a:hover { background: var(--dark); color: var(--white); border-color: var(--dark); }
+  .footer-col h5 { font-size: 13px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { font-size: 13px; color: var(--mid); transition: color .2s; }
+  .footer-col ul li a:hover { color: var(--dark); }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; color: #aaa; }
+
+  /* ── PLACEHOLDER IMAGES ── */
+  .img-placeholder {
+    background: linear-gradient(135deg, #d4cdc5 0%, #c5bdb3 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: #999; font-size: 12px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content { animation: fadeUp .7s ease both; }
+  .hero-img     { animation: fadeUp .7s .15s ease both; }
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--dark); transition: all .3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none; flex-direction: column;
+    background: var(--white); border-bottom: 1px solid var(--border);
+    padding: 20px 24px 28px; gap: 18px;
+    position: absolute; top: 64px; left: 0; right: 0;
+    z-index: 99; box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 15px; color: var(--mid); font-weight: 400; }
+  .mobile-menu .btn-cta { width: 100%; text-align: center; margin-top: 8px; }
+
+  /* ── TABLET: 768px ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; position: relative; }
+    .nav-links, nav > .btn-cta { display: none; }
+    .hamburger { display: flex; }
+
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-img { order: -1; }
+    .hero-img .img-placeholder { min-height: 300px !important; }
+    .hero-content { padding: 40px 24px; }
+    .hero-content h1 { font-size: 2.2rem; }
+
+    .services { grid-template-columns: 1fr; }
+    .services-left { padding: 48px 24px; }
+    .services-right .img-placeholder { min-height: 280px !important; }
+
+    .portfolio-section { grid-template-columns: 1fr; padding: 48px 0; }
+    .portfolio-list { padding: 0 24px; }
+    .portfolio-featured { padding: 40px 24px 0; }
+
+    .testimonials { padding: 56px 24px; }
+    .testimonial-card { grid-template-columns: 1fr; gap: 28px; }
+    .testimonial-card .img-placeholder { width: 100% !important; height: 240px !important; }
+    .testimonial-nav { justify-content: center; }
+
+    .cta-band { grid-template-columns: 1fr; }
+    .cta-content { padding: 48px 24px; }
+    .cta-img { display: none; }
+
+    footer { padding: 40px 24px 24px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-brand { grid-column: 1 / -1; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  /* ── MOBILE: 480px ── */
+  @media (max-width: 480px) {
+    .hero-content h1 { font-size: 1.8rem; }
+    .section-tag { font-size: 1.6rem; }
+    .services-grid { grid-template-columns: 1fr; gap: 24px; }
+    .portfolio-item { grid-template-columns: 90px 1fr; gap: 14px; }
+    .portfolio-item .img-placeholder { width: 90px !important; height: 72px !important; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { font-size: 11px; }
+    .btn-group { flex-direction: column; }
+    .btn-outline, .btn-cta { width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="logo">Boma Yetu</span>
+  <div class="nav-links">
+    <a href="#" class="active">Home</a>
+    <a href="#">Our Services</a>
+    <a href="#">Portfolio</a>
+    <a href="#">About Us</a>
+    <a href="#">Our Blog</a>
+  </div>
+  <button class="btn-cta">Book A Consultation</button>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#">Home</a>
+  <a href="#">Our Services</a>
+  <a href="#">Portfolio</a>
+  <a href="#">About Us</a>
+  <a href="#">Our Blog</a>
+  <button class="btn-cta">Book A Consultation</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDRyCpHvmhHHF0vpaUNgqqh202IsTpIZKTlQ&s" alt="Elegant modern living room designed by Kirkland" style="width:100%;height:100%;min-height:480px;object-fit:cover;">
+  </div>
+  <div class="hero-content">
+    <h1>Spaces That Tell<br>Your Story</h1>
+    <p>At Boma Yetu, we turn empty rooms into lived-in sanctuaries. Our designers blend your personality with timeless form — crafting interiors that feel as beautiful as they function.</p>
+    <div class="btn-group">
+      <button class="btn-outline">See Our Work</button>
+      <button class="btn-cta">Book A Consultation</button>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="services-left">
+    <h2 class="section-tag"><em>Tailored Design</em> Services We Offer</h2>
+    <p class="section-sub">From a single room refresh to a full architectural overhaul, we bring the same meticulous care to every project — no matter the scale or style.</p>
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="icon">⌂</div>
+        <h4>Residential Design</h4>
+        <p>Custom interiors for apartments, townhomes, and family estates — designed around how you actually live.</p>
+      </div>
+      <div class="service-item">
+        <div class="icon">▦</div>
+        <h4>Commercial Design</h4>
+        <p>Offices, boutiques, and hospitality spaces that balance brand identity with everyday usability.</p>
+      </div>
+      <div class="service-item">
+        <div class="icon">⊞</div>
+        <h4>Model Homes</h4>
+        <p>Aspirational staging that helps buyers fall in love before they sign — emotionally and aesthetically.</p>
+      </div>
+      <div class="service-item">
+        <div class="icon">◈</div>
+        <h4>Presentation Centres</h4>
+        <p>Show-stopping sales environments that communicate value, vision, and lifestyle at first glance.</p>
+      </div>
+    </div>
+  </div>
+  <div class="services-right">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDRyCpHvmhHHF0vpaUNgqqh202IsTpIZKTlQ&s" alt="Bright open-plan kitchen by Kirkland" style="width:100%;height:100%;min-height:460px;object-fit:cover;">
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio-section">
+  <div class="portfolio-list">
+    <div class="portfolio-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDRyCpHvmhHHF0vpaUNgqqh202IsTpIZKTlQ&s" alt="South Toronto Residence" style="height:88px;width:120px;object-fit:cover;">
+      <div class="portfolio-item-body">
+        <h4>South Toronto Residence</h4>
+        <p>A Victorian semi-detached reimagined with warm oak, concrete accents, and open-plan living for a young family of four.</p>
+        <span class="read-more">Read More</span>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDRyCpHvmhHHF0vpaUNgqqh202IsTpIZKTlQ&s" alt="One Bloor Building" style="height:88px;width:120px;object-fit:cover;">
+      <div class="portfolio-item-body">
+        <h4>One Bloor Building</h4>
+        <p>A 34th-floor penthouse redesigned to frame panoramic city views, with bespoke millwork and a muted, luxurious palette.</p>
+        <span class="read-more">Read More</span>
+      </div>
+    </div>
+    <div class="portfolio-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDRyCpHvmhHHF0vpaUNgqqh202IsTpIZKTlQ&s" alt="North York Estates" style="height:88px;width:120px;object-fit:cover;">
+      <div class="portfolio-item-body">
+        <h4>North York Estates</h4>
+        <p>A sprawling executive home transformed through layered lighting, custom furniture, and a cohesive earth-tone design language.</p>
+        <span class="read-more">Read More</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-featured">
+    <h2 class="section-tag">Our <em>Featured</em> Projects</h2>
+    <p class="section-sub">Each Kirkland project is a collaboration — we listen first, design second, and never stop refining until the space feels unmistakably yours.</p>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDRyCpHvmhHHF0vpaUNgqqh202IsTpIZKTlQ&s" alt="North Toronto Residence living area" style="width:100%;height:240px;object-fit:cover;margin-bottom:16px;">
+    <h4>North Toronto Residence</h4>
+    <p>A mid-century modern revival blending teak furniture, statement lighting, and curated art to create a home that feels both collected and calm.</p>
+    <span class="read-more">Read More</span>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <h2>A Word From Our Clients</h2>
+  <p>We measure our success not in square footage, but in the moments our clients send us a photo of their morning coffee in their new kitchen — or tell us their home finally feels like home.</p>
+
+  <div class="testimonial-card">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDRyCpHvmhHHF0vpaUNgqqh202IsTpIZKTlQ&s" alt="Amara Osei, satisfied Kirkland client" style="width:220px;height:280px;object-fit:cover;">
+    <div class="quote-body">
+      <div class="quote-icon">❝❝</div>
+      <p class="quote-text">Working with Boma Yetu was the best decision we made during our renovation. They listened to everything we said — and a few things we didn't even know how to say. What came out the other side was a home that genuinely reflects who we are as a couple. The attention to detail in every corner, every material choice, every light fitting is extraordinary. We've had guests ask if we moved into a new house. We didn't. We just finally have the right one.</p>
+      <div class="quote-name">Amara Osei</div>
+      <div class="quote-role">Creative Director, Volta Studio</div>
+      <div class="testimonial-nav">
+        <button>‹</button>
+        <button>›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-content">
+    <h2>Let's Build Something Beautiful</h2>
+    <p>Every great interior starts with one honest conversation. Tell us about your space, your vision, and your life — we'll take it from there. No commitment required.</p>
+    <button class="btn-white">Book A Free Consultation</button>
+  </div>
+  <div class="cta-img">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDRyCpHvmhHHF0vpaUNgqqh202IsTpIZKTlQ&s" alt="Kirkland designed reading nook" style="width:100%;height:100%;min-height:280px;object-fit:cover;">
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo">Boma Yetu</span>
+      <p>Kirkland is a boutique interior design studio with studios in Toronto and Vancouver. We've delivered over 200 projects across North America since 2011 — each one a little different, each one deeply considered.</p>
+      <div class="social-links">
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="X / Twitter">𝕏</a>
+        <a href="#" aria-label="Facebook">f</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="#">Our Services</a></li>
+        <li><a href="#">Why Boma Yetu</a></li>
+        <li><a href="#">Design Process</a></li>
+        <li><a href="#">Get Started</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Support</h5>
+      <ul>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press Kit</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>About Us</h5>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Journal</a></li>
+        <li><a href="#">Partnerships</a></li>
+        <li><a href="#">Awards</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Lincorn Muhia Design Studio | All Rights Reserved</span>
+    <span>Ruiru, Kenya</span>
+  </div>
+</footer>
+
+<script>
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+</script>
+</body>
+</html>
